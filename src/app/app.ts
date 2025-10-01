@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { User } from './models/user';
 import { NgIf, NgFor } from '@angular/common';
+import {GameList} from './game-list/game-list';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgIf, NgFor],
+  imports: [RouterOutlet, NgIf, NgFor, GameList],
   templateUrl:'./app.html',
   standalone: true,
   styleUrls: ['./app.css']

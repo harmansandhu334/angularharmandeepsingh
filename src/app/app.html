@@ -1,21 +1,3 @@
-<div class="container">
-  <h2>Games List</h2>
+<app-game-list>
 
-
-  <div *ngFor="let g of gamesList">
-    <div>ID: {{ g.id }}</div>
-    <div>Title: {{ g.title }}</div>
-    <div>Genre: {{ g.genre }}</div>
-
-
-    <div *ngIf="g.inStock; else outOfStock">
-      Status: In Stock
-    </div>
-    <ng-template #outOfStock>
-      <div>Status: Out of Stock</div>
-    </ng-template>
-
-    <div>Multiplayer: {{ g.multiplayer ? 'Yes' : 'No' }}</div>
-    <hr>
-  </div>
-</div>
+</app-game-list>
