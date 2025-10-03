@@ -1,6 +1,3 @@
 <div class="game-list">
-  <game-list-item [game]="gamesList[0]"></game-list-item>
-  <game-list-item [game]="gamesList[1]"></game-list-item>
-  <game-list-item [game]="gamesList[2]"></game-list-item>
-  <game-list-item [game]="gamesList[3]"></game-list-item>
+  <game-list-item *ngFor="let g of gamesList" [game]="g"></game-list-item>
 </div>
