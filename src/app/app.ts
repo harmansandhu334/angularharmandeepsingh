@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
 
-import { User } from './models/user';
+import { User } from '../app/models/user';
 import { NgIf, NgFor } from '@angular/common';
 import {GameList} from './game-list/game-list';
-
+import { mockContent } from './data/mockcontent';
+import { GameListItem } from './game-list-item/game-list-item';
+import { Game } from './services/game';
 @Component({
   selector: 'app-root',
-  imports: [ NgIf, NgFor, GameList],
+  imports: [ NgIf, NgFor, GameList,GameListItem],
   templateUrl:'./app.html',
   standalone: true,
   styleUrls: ['./app.css']
@@ -17,17 +19,16 @@ export class App {
 
 
 
+// single game will appear at top
+  oneGame?: User;
 
-  gamesList: User[] = [
-    { id: 1, title: 'Cricket 24',     genre: 'Sports',      inStock: true,  multiplayer: true  },
-    { id: 2, title: 'Ashes Cricket',  genre: 'Sports',      inStock: false, multiplayer: true  },
-    { id: 3, title: 'Kabaddi Clash',  genre: 'Sports',      inStock: true,  multiplayer: true  },
-    { id: 4, title: 'Carrom Board',   genre: 'Indoor',      inStock: true,  multiplayer: true  },
-    { id: 5, title: 'Ludo King',      genre: 'Casual',      inStock: true,  multiplayer: true  },
-    { id: 6, title: 'Gilli Danda',    genre: 'Traditional', inStock: true,  multiplayer: false },
-    { id: 7, title: 'Kho Kho Run',    genre: 'Sports',      inStock: true,  multiplayer: true  },
-    { id: 8, title: 'Snakes & Ladders', genre: 'Board',     inStock: true,  multiplayer: true  }
-  ];
+  //  Dependency Injection
+  constructor(private game: Game) {
+    // getting the  one game  by using service
+    this.game.getGameWithId(2).subscribe(g => {
+      this.oneGame = g;
+    });
+  }
 
 
 }
