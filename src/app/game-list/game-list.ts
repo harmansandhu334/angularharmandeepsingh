@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { User } from '../models/user';
 import { CommonModule } from '@angular/common';
 import { GameListItem } from '../game-list-item/game-list-item';
@@ -11,7 +11,7 @@ import { Game } from '../services/game';
   standalone: true,
   styleUrls: ['./game-list.css']
 })
-export class GameList {
+export class GameList implements OnInit{
   gamesList: User[] = [];
   // dependency injection
   constructor(private game: Game) {}
