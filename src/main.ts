@@ -7,11 +7,21 @@ import { GameListItem } from './app/game-list-item/game-list-item';
 
 
 
+import { ModifyListItem } from './app/modify-list-item/modify-list-item';
+import { PageNotFound } from './app/page-not-found/page-not-found';
+
+
+
 // routes
 const routes: Routes = [
 
+  { path: '', redirectTo: '/games', pathMatch: 'full' }, // default route
   { path: 'games', component: GameList },
-  { path: 'game-item', component: GameListItem }
+  { path: 'game-item', component: GameListItem },
+  { path: 'modify-list-item', component: ModifyListItem },
+  { path: '**', component: PageNotFound } // wildcard
+
+
 
 ];
 bootstrapApplication(App, {

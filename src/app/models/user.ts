@@ -4,4 +4,5 @@ export interface User {
   genre: string;
   inStock: boolean;
   multiplayer?: boolean;
+  imgUrl: string;
 }

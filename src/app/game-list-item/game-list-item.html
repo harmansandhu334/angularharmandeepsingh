@@ -5,5 +5,13 @@
   <p><strong>Genre:</strong> {{ game.genre }}</p>
   <p><strong>Status:</strong> {{ game.inStock ? 'In Stock' : 'Out of Stock' }}</p>
   <p><strong>Multiplayer:</strong> {{ game.multiplayer ? 'Yes' : 'No' }}</p>
+  <img
+    [ngSrc]="game.imgUrl"
+    width="250"
+    height="250"
+    [alt]="game.title"
+    priority
+     />
+
 </div>
 

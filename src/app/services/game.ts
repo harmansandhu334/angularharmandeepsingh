@@ -14,7 +14,44 @@ export class Game {
 
   // Returns all games
   getGames(): Observable<User[]> {
-    return of(mockContent); // Returns an observable that emits mock game data
+    return of([
+      {
+        id: 1,
+        title: 'Cricket 24',
+        genre: 'Sports',
+        inStock: true,
+        multiplayer: true,
+
+        imgUrl: 'https://www.istockphoto.com/photo/close-up-of-red-cricket-ball-and-bat-sitting-on-grass-gm177427917-21498996?searchscope=image%2Cfilm'
+      },
+      {
+        id: 2,
+        title: 'Ashes Cricket',
+        genre: 'Sports',
+        inStock: false,
+        multiplayer: true,
+
+        imgUrl: 'https://www.vecteezy.com/photo/27912268-indian-cricket-team-with-national-flag'
+      },
+      {
+        id: 3,
+        title: 'Kabaddi Clash',
+        genre: 'Sports',
+        inStock: true,
+        multiplayer: true,
+
+        imgUrl: 'https://imgbin.com/png/Tm2JPwV6/asian-games-asian-beach-games-japan-national-kabaddi-team-sport-png#google_vignette'
+      },
+      {
+        id: 4,
+        title: 'Carrom Board',
+        genre: 'Indoor',
+        inStock: true,
+        multiplayer: true,
+
+        imgUrl: 'https://www.istockphoto.com/photo/carrom-board-game-gm484864454-70961197'
+      }
+    ]);
 
 
   }
