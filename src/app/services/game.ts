@@ -8,13 +8,13 @@ import { mockContent } from '../data/mockcontent';
   providedIn: 'root'
 })
 export class Game {
-  private games: User[] = mockContent; // Local copy of game data
+  private games: User[] = [...mockContent]; // Local copy of game data
 
   constructor() { }
 
   // Returns all games
   getGames(): Observable<User[]> {
-    return of(mockContent); // Return all games
+    return of(this.games); // Return all games
 
 
   }
@@ -26,9 +26,16 @@ export class Game {
 
   // adding new game
   addGame(newGame: User): Observable<User[]> {
-    this.games.push(newGame);
+
+    const nextId = this.games.length
+      ? Math.max(...this.games.map(g => g.id)) + 1
+      : 1;
+
+
+    this.games.push({ ...newGame, id: nextId });
     return of(this.games);
   }
+
 
 
   //updating game
@@ -45,7 +52,10 @@ export class Game {
     const [removed] = this.games.splice(index, 1);
     return of(removed);
   }
-
+  generateNewId(): number {
+    return this.games.length > 0
+      ? Math.max(...this.games.map(game => game.id)) + 1
+      : 1;}
 
 
 

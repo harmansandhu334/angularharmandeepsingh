@@ -1,4 +1,8 @@
 <div class="game-list">
+  <h2>Games</h2>
+  <button [routerLink]="['/games', 'add']">Add Game</button>
+
+
   <div *ngFor="let g of gamesList" class="game-item">
     <game-list-item [game]="g"></game-list-item>
     <button [routerLink]="['/games', g.id, 'edit']">Edit</button>
@@ -6,5 +10,6 @@
 
 
 
-</div>
+
+  </div>
 </div>

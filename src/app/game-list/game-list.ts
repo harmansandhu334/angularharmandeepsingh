@@ -37,6 +37,8 @@ delete(id: number): void {
   edit(id: number): void {
     this.router.navigate(['/games', id, 'edit']);
   }
-
+  addGame(): void {
+    this.router.navigate(['/games/add']);
+  }
 
 }
