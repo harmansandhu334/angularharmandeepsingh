@@ -5,7 +5,11 @@ import { provideRouter, Routes } from '@angular/router';
 import { GameList } from './app/game-list/game-list';
 import { GameListItem } from './app/game-list-item/game-list-item';
 
-
+import { InMemoryDataService } from './app/services/in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
+import {importProvidersFrom} from "@angular/core";
 
 import { ModifyListItem } from './app/modify-list-item/modify-list-item';
 import { PageNotFound } from './app/page-not-found/page-not-found';
@@ -27,6 +31,9 @@ const routes: Routes = [
 
 ];
 bootstrapApplication(App, {
-  providers: [provideRouter(routes)]
+  providers: [provideHttpClient(),
+    provideRouter(routes),
+    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1000 }))
+  ]
 })
   .then(r => console.log('Bootstrap successful'));

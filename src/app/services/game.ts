@@ -1,62 +1,67 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+
 import { User } from '../models/user';
-import { mockContent } from '../data/mockcontent';
+import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
 export class Game {
-  private games: User[] = [...mockContent]; // Local copy of game data
+  private apiUrl = 'api/games';
 
-  constructor() { }
+
+  constructor(private http: HttpClient) {}
+
+
 
   // Returns all games
   getGames(): Observable<User[]> {
-    return of(this.games); // Return all games
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      catchError((error) => this.handleError(error))
+    );
 
 
   }
   //read
   //getting one game with id
-  getGameWithId(id: number): Observable<User | undefined> {
-    return of(this.games.find(g => g.id === id));
+  getGameWithId(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => this.handleError(error))
+    );
   }
 
   // adding new game
-  addGame(newGame: User): Observable<User[]> {
+  addGame(newGame: User): Observable<User> {
 
-    const nextId = this.games.length
-      ? Math.max(...this.games.map(g => g.id)) + 1
-      : 1;
-
-
-    this.games.push({ ...newGame, id: nextId });
-    return of(this.games);
+    return this.http.post<User>(this.apiUrl, newGame).pipe(
+      catchError((error) => this.handleError(error))
+    );
   }
 
 
 
   //updating game
-  updateGame(updatedGame: User): Observable<User[]> {
-    const index = this.games.findIndex(g => g.id === updatedGame.id);
-    if (index !== -1) this.games[index] = updatedGame;
-    return of(this.games);
+  updateGame(updatedGame: User): Observable<User> {
+
+    return this.http.put<User>(`${this.apiUrl}/${updatedGame.id}`, updatedGame).pipe(
+      catchError((error) => this.handleError(error))
+    );
   }
 
   //  deleting game
-  deleteGame(id: number): Observable<User | undefined> {
-    const index = this.games.findIndex(g => g.id === id);
-    if (index === -1) return of(undefined);
-    const [removed] = this.games.splice(index, 1);
-    return of(removed);
+  deleteGame(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => this.handleError(error))
+    );
   }
-  generateNewId(): number {
-    return this.games.length > 0
-      ? Math.max(...this.games.map(game => game.id)) + 1
-      : 1;}
 
 
+  private handleError(error: HttpErrorResponse) {
+    console.error('API error:', error);
+    return throwError(() => new Error('Server error, please try again.'));
+  }
 
 }
