@@ -1,0 +1,43 @@
+
+<form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="id">ID</label>
+    <input type="number" id="id" formControlName="id" />
+  </div>
+
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" formControlName="title" />
+  </div>
+
+  <!-- Genre Field -->
+  <div class="form-group">
+    <label for="genre">Genre</label>
+    <input type="text" id="genre" formControlName="genre" />
+  </div>
+
+  <!-- In Stock Checkbox -->
+  <div class="form-group">
+    <label for="inStock">In Stock</label>
+    <input type="checkbox" id="inStock" formControlName="inStock" />
+  </div>
+
+  <!-- Multiplayer Checkbox -->
+  <div class="form-group">
+    <label for="multiplayer">Multiplayer</label>
+    <input type="checkbox" id="multiplayer" formControlName="multiplayer" />
+  </div>
+
+  <!-- Image URL Field -->
+  <div class="form-group">
+    <label for="imgUrl">Image URL</label>
+    <input type="text" id="imgUrl" formControlName="imgUrl" />
+  </div>
+
+  <!-- Buttons -->
+  <button type="submit">
+    {{ gameForm.get('id')?.value ? 'Update Game' : 'Add Game' }}
+  </button>
+</form>
