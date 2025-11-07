@@ -3,27 +3,46 @@ import { User } from '../models/user';
 import { CommonModule } from '@angular/common';
 import { GameListItem } from '../game-list-item/game-list-item';
 import { Game } from '../services/game';
-import { RouterModule,Router } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
+import {RouterLink} from "@angular/router";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-list',
-  imports: [CommonModule, GameListItem,RouterModule],
+  imports: [CommonModule, GameListItem,RouterModule,RouterLink],
   templateUrl: './game-list.html',
   standalone: true,
   styleUrls: ['./game-list.css']
 })
 export class GameList implements OnInit{
   gamesList: User[] = [];
+
+  error: string | null = null;
+
   // dependency injection
   constructor(private game: Game,
-              private router: Router) {}
+              private router: Router
+             ) {
+
+  }
 
 
   ngOnInit(): void {
-    this.game.getGames().subscribe(list => {
-      this.gamesList = list;
+    this.game.getGames().subscribe({
+      next: (data: User[]) => {
+        this.gamesList = data;
+        this.error = null;
+      },
+      error: err => {
+        this.error = 'Error fetching games';
+        console.error('Error fetching games', err);
+      },
+      complete: () => console.log('Game data fetch complete!')
     });
+  }
 
+  selectedGame?: User;
+  selectGame(game: User): void {
+    this.selectedGame = game;
 
 
 }

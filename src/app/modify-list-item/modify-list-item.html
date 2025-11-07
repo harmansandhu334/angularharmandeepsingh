@@ -41,3 +41,4 @@
     {{ gameForm.get('id')?.value ? 'Update Game' : 'Add Game' }}
   </button>
 </form>
+<div *ngIf="error" class="error">{{ error }}</div>

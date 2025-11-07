@@ -17,6 +17,7 @@ import { User } from '../models/user';
 export class ModifyListItem implements OnInit{
   gameForm:FormGroup;
   game: User | undefined;
+  error: string | null = null;
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
@@ -36,34 +37,45 @@ export class ModifyListItem implements OnInit{
 
 }
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.gameService.getGameWithId(+id).subscribe(game => {
-        if (game) {
-          this.game = game;
-
-          this.gameForm.patchValue(game);
+      this.gameService.getGameWithId(id).subscribe({
+        next: (g) => {
+          if (g) {
+            this.gameForm.patchValue(g);
+          }
+        },
+        error: (err) => {
+          this.error = 'Error fetching game';
+          console.error('Error fetching game:', err);
         }
       });
     }
   }
   onSubmit(): void {
-    const game: User = this.gameForm.value;
+    if (this.gameForm.valid) {
+      const game: User = this.gameForm.value;
 
+      if (game.id) {
+        this.gameService.updateGame(game).subscribe({
+          next: () => this.router.navigate(['/games']),
+          error: (err) => {
+            this.error = 'Error updating game';
+            console.error('Update failed:', err);
+          }
+        });
+      } else {
 
-    if (game.id) {
-      this.gameService.updateGame(game).subscribe(() => {
-        this.router.navigate(['/games']);
-      });
-    } else {
+        this.gameService.addGame(game).subscribe({
+          next: () => this.router.navigate(['/games']),
+          error: (err) => {
+            this.error = 'Error adding game';
+            console.error('Add failed:', err);
+          }
+        });
+      }
+    }}}
 
-      const newId = this.gameService.generateNewId();
-      game.id = newId;
-      this.gameService.addGame(game).subscribe(() => {
-        this.router.navigate(['/games']);
-      });
-    }
-  }}
 
 
 
