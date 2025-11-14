@@ -1,10 +1,15 @@
 <div *ngIf="game" class="game-list">
   <h2>Game</h2>
   <p><strong>ID:</strong> {{ game.id }}</p>
-  <p><strong>Title:</strong> {{ game.title }}</p>
+  <p><strong>Title:</strong> {{ game.title| uppercase }}</p>
   <p><strong>Genre:</strong> {{ game.genre }}</p>
   <p><strong>Status:</strong> {{ game.inStock ? 'In Stock' : 'Out of Stock' }}</p>
   <p><strong>Multiplayer:</strong> {{ game.multiplayer ? 'Yes' : 'No' }}</p>
+
+  <p><strong>Price:</strong> {{ game.price | currency:'CAD':'symbol-narrow' }}</p>
+
+
+  <p><strong>Release Date:</strong> {{ game.releaseDate | date }}</p>
   <img
     [ngSrc]="game.imgUrl"
     width="250"

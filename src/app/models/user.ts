@@ -5,4 +5,7 @@ export interface User {
   inStock: boolean;
   multiplayer?: boolean;
   imgUrl: string;
+  price: number;
+  releaseDate: string;
+
 }

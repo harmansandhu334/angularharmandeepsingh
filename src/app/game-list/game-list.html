@@ -4,6 +4,14 @@
 
 
   <div *ngFor="let g of gamesList" class="game-item">
+
+
+
+
+
+
+
+
     <game-list-item [game]="g"></game-list-item>
     <button [routerLink]="['/games', g.id, 'edit']">Edit</button>
     <button (click)="delete(g.id)">Delete</button>

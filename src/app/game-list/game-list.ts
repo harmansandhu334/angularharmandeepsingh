@@ -6,9 +6,13 @@ import { Game } from '../services/game';
 import { RouterModule } from '@angular/router';
 import {RouterLink} from "@angular/router";
 import { Router } from '@angular/router';
+import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
+
 @Component({
   selector: 'app-game-list',
-  imports: [CommonModule, GameListItem,RouterModule,RouterLink],
+  imports: [CommonModule, GameListItem,RouterModule,RouterLink,DatePipe,
+    UpperCasePipe,
+    CurrencyPipe],
   templateUrl: './game-list.html',
   standalone: true,
   styleUrls: ['./game-list.css']

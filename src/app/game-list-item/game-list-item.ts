@@ -4,10 +4,13 @@ import {NgIf} from '@angular/common';
 import {ActivatedRoute, Router} from "@angular/router";
 import { NgOptimizedImage } from '@angular/common';
 import { Game } from "../services/game";
+import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'game-list-item',
-  imports: [NgIf,NgOptimizedImage],
+  imports: [NgIf,NgOptimizedImage,DatePipe,
+    UpperCasePipe,
+    CurrencyPipe],
   templateUrl: './game-list-item.html',
   standalone: true,
   styleUrls: ['./game-list-item.css']
