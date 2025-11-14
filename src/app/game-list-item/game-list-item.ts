@@ -5,12 +5,15 @@ import {ActivatedRoute, Router} from "@angular/router";
 import { NgOptimizedImage } from '@angular/common';
 import { Game } from "../services/game";
 import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
+import { StockStatusPipe } from '../pipes/stock-status-pipe';
+
 
 @Component({
   selector: 'game-list-item',
   imports: [NgIf,NgOptimizedImage,DatePipe,
     UpperCasePipe,
-    CurrencyPipe],
+    CurrencyPipe,
+    StockStatusPipe ],
   templateUrl: './game-list-item.html',
   standalone: true,
   styleUrls: ['./game-list-item.css']
