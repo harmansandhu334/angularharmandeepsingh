@@ -20,12 +20,49 @@ import { PageNotFound } from './app/page-not-found/page-not-found';
 const routes: Routes = [
 
   { path: '', redirectTo: '/games', pathMatch: 'full' }, // default route
-  { path: 'games', component: GameList },
-  { path: 'game-item', component: GameListItem },
-  { path: 'games/add', component: ModifyListItem },
-  { path: 'games/:id/edit', component: ModifyListItem },
 
-  { path: '**', component: PageNotFound } // wildcard
+  { path: 'games', component: GameList },
+
+
+
+  {
+    path: 'game-item',
+    loadComponent: () =>
+      import('./app/game-list-item/game-list-item').then(m => m.GameListItem)
+  },
+
+
+
+
+  {
+    path: 'games/add',
+    loadComponent: () =>
+      import('./app/modify-list-item/modify-list-item').then(m => m.ModifyListItem)
+  },
+
+
+
+  {
+    path: 'games/:id/edit',
+    loadComponent: () =>
+      import('./app/modify-list-item/modify-list-item').then(m => m.ModifyListItem)
+  },
+
+
+
+
+
+
+
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./app/page-not-found/page-not-found').then(m => m.PageNotFound)
+  }
+
+
+
+
 
 
 
