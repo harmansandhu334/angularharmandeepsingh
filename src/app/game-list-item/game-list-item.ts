@@ -7,13 +7,14 @@ import { Game } from "../services/game";
 import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { StockStatusPipe } from '../pipes/stock-status-pipe';
 
+import { HoverHighlightDirective } from '../directives/hover-highlight';
 
 @Component({
   selector: 'game-list-item',
   imports: [NgIf,NgOptimizedImage,DatePipe,
     UpperCasePipe,
     CurrencyPipe,
-    StockStatusPipe ],
+    StockStatusPipe,HoverHighlightDirective ],
   templateUrl: './game-list-item.html',
   standalone: true,
   styleUrls: ['./game-list-item.css']

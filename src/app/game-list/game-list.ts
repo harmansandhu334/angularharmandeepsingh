@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { StockStatusPipe } from '../pipes/stock-status-pipe';
 
-
+import { HoverHighlightDirective } from '../directives/hover-highlight';
 
 @Component({
   selector: 'app-game-list',
   imports: [CommonModule, GameListItem,RouterModule,RouterLink,DatePipe,
     UpperCasePipe,
     CurrencyPipe,
-    StockStatusPipe   ],
+    StockStatusPipe ,HoverHighlightDirective   ],
   templateUrl: './game-list.html',
   standalone: true,
   styleUrls: ['./game-list.css']
