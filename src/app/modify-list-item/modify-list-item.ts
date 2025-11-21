@@ -5,11 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '../services/game';
 import { User } from '../models/user';
 
+import { HighlightOnFocus } from '../directives/highlight-on-focus';
 
 
 @Component({
   selector: 'app-modify-list-item',
-  imports: [CommonModule, ReactiveFormsModule,FormsModule,],
+  imports: [CommonModule,HighlightOnFocus, ReactiveFormsModule,FormsModule,],
   standalone: true,
   templateUrl: './modify-list-item.html',
   styleUrls: ['./modify-list-item.css']
