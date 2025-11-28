@@ -15,6 +15,13 @@ import { ModifyListItem } from './app/modify-list-item/modify-list-item';
 import { PageNotFound } from './app/page-not-found/page-not-found';
 
 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+
 
 // routes
 const routes: Routes = [
@@ -70,7 +77,13 @@ const routes: Routes = [
 bootstrapApplication(App, {
   providers: [provideHttpClient(),
     provideRouter(routes),
-    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1000 }))
+    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1000 })),
+    provideAnimationsAsync(),
+
+
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
   .then(r => console.log('Bootstrap successful'));

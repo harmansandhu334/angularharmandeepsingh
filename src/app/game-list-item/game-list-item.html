@@ -1,25 +1,56 @@
-<div *ngIf="game" class="game-list" [appHoverHighlight]="'lightblue'">
-  <h2>Game</h2>
+<mat-card *ngIf="game" class="game-list" appHoverHighlight="lightblue">
+  <mat-card-header>
+    <div mat-card-avatar class="avatar">
+      <mat-icon>sports_esports</mat-icon>
+    </div>
 
+    <mat-card-title>Game</mat-card-title>
+    <mat-card-subtitle>{{ game.title | uppercase }}</mat-card-subtitle>
+  </mat-card-header>
 
-  <p><strong>ID:</strong> {{ game.id }}</p>
-  <p><strong>Title:</strong> {{ game.title| uppercase }}</p>
-  <p><strong>Genre:</strong> {{ game.genre }}</p>
-  <p><strong>Status:</strong> {{ game.inStock | stockStatus }}</p>
-
-  <p><strong>Multiplayer:</strong> {{ game.multiplayer ? 'Yes' : 'No' }}</p>
-
-  <p><strong>Price:</strong> {{ game.price | currency:'CAD':'symbol-narrow' }}</p>
-
-
-  <p><strong>Release Date:</strong> {{ game.releaseDate | date }}</p>
   <img
+    mat-card-image
     [ngSrc]="game.imgUrl"
     width="250"
     height="250"
     [alt]="game.title"
     priority
-     />
+  />
 
-</div>
+  <mat-card-content>
+    <p><strong>ID:</strong> {{ game.id }}</p>
 
+    <p><strong>Genre:</strong> {{ game.genre }}</p>
+
+    <p>
+      <strong>Status:</strong>
+      <span [matTooltip]="'In Stock? ' + (game.inStock | stockStatus)">
+        {{ game.inStock | stockStatus }}
+      </span>
+    </p>
+
+    <p><strong>Multiplayer:</strong> {{ game.multiplayer ? 'Yes' : 'No' }}</p>
+
+    <p>
+      <strong>Price:</strong>
+      {{ game.price | currency:'CAD':'symbol-narrow' }}
+    </p>
+
+    <p>
+      <strong>Release Date:</strong>
+      {{ game.releaseDate | date }}
+    </p>
+
+    <mat-chip-set>
+      <mat-chip color="primary" selected>
+        <mat-icon>category</mat-icon>
+        {{ game.genre }}
+      </mat-chip>
+
+      <mat-chip *ngIf="game.multiplayer" color="accent" selected>
+        <mat-icon>group</mat-icon>
+        Multiplayer
+      </mat-chip>
+    </mat-chip-set>
+  </mat-card-content>
+</mat-card>

@@ -1,25 +1,56 @@
-<div class="game-list">
-  <h2>Games</h2>
-  <button [routerLink]="['/games', 'add']"  [appHoverHighlight]="'lightgreen'">Add Game</button>
+<mat-toolbar color="primary">
+  <mat-icon>sports_esports</mat-icon>
+  <span>Games</span>
 
+  <span class="spacer"></span>
 
-  <div *ngFor="let g of gamesList" class="game-item">
+  <button
+    mat-raised-button
+    color="accent"
+    [routerLink]="['/games', 'add']"
+    appHoverHighlight="lightgreen"
+  >
+    <mat-icon>add</mat-icon>
+    Add Game
+  </button>
+</mat-toolbar>
 
+<div class="game-list-container">
 
-
-
-
-
-
-
+  <mat-card
+    *ngFor="let g of gamesList"
+    class="game-card"
+    appHoverHighlight="lightblue"
+  >
     <game-list-item [game]="g"></game-list-item>
-    <button [routerLink]="['/games', g.id, 'edit']">Edit</button>
-    <button (click)="delete(g.id)">Delete</button>
 
+    <mat-divider></mat-divider>
 
+    <div class="actions">
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="edit(g.id)"
+      >
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
 
+      <button
+        mat-flat-button
+        color="warn"
+        (click)="delete(g.id)"
+      >
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </div>
+  </mat-card>
 
-  </div>
 </div>
 
-<div *ngIf="error" class="error">{{ error }}</div>
+<div *ngIf="error" class="error">
+  <mat-card class="error-card">
+    <mat-card-content>{{ error }}</mat-card-content>
+  </mat-card>
+</div>

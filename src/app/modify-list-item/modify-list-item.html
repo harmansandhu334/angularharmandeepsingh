@@ -1,48 +1,86 @@
+<mat-card class="mat-form">
+  <h2>{{ gameForm.get('id')?.value ? 'Update Game' : 'Add Game' }}</h2>
 
-<form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
 
-  <div class="form-group">
-    <label for="id">ID</label>
-    <input type="number" id="id" formControlName="id"
-           appHighlightOnFocus="yellow"/>
-  </div>
+    <!-- ID -->
+    <mat-form-field appearance="outline" class="form-field" disabled>
+      <mat-label>ID</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="id"
+        appHighlightOnFocus="yellow"
+      />
+    </mat-form-field>
 
+    <!-- Title -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="title"
+        appHighlightOnFocus="lightblue"
+      />
+    </mat-form-field>
 
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" id="title" formControlName="title"
+    <!-- Genre -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Genre</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="genre"
+        appHighlightOnFocus="lightgreen"
+      />
+    </mat-form-field>
 
-           appHighlightOnFocus="lightblue"/>
-  </div>
+    <!-- In Stock & Multiplayer -->
+    <div class="checkbox-row">
+      <mat-checkbox formControlName="inStock">
+        In Stock
+      </mat-checkbox>
 
-  <!-- Genre Field -->
-  <div class="form-group">
-    <label for="genre">Genre</label>
-    <input type="text" id="genre" formControlName="genre"
-           appHighlightOnFocus="lightgreen"/>
-  </div>
+      <mat-checkbox formControlName="multiplayer">
+        Multiplayer
+      </mat-checkbox>
+    </div>
 
-  <!-- In Stock Checkbox -->
-  <div class="form-group">
-    <label for="inStock">In Stock</label>
-    <input type="checkbox" id="inStock" formControlName="inStock" />
-  </div>
+    <!-- Image URL -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Image URL</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="imgUrl"
+      />
+    </mat-form-field>
 
-  <!-- Multiplayer Checkbox -->
-  <div class="form-group">
-    <label for="multiplayer">Multiplayer</label>
-    <input type="checkbox" id="multiplayer" formControlName="multiplayer" />
-  </div>
+    <!-- Error message -->
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
 
-  <!-- Image URL Field -->
-  <div class="form-group">
-    <label for="imgUrl">Image URL</label>
-    <input type="text" id="imgUrl" formControlName="imgUrl" />
-  </div>
+    <!-- Buttons -->
+    <div class="button-group">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="gameForm.invalid"
+      >
+        {{ gameForm.get('id')?.value ? 'Update Game' : 'Add Game' }}
+      </button>
 
-  <!-- Buttons -->
-  <button type="submit">
-    {{ gameForm.get('id')?.value ? 'Update Game' : 'Add Game' }}
-  </button>
-</form>
-<div *ngIf="error" class="error">{{ error }}</div>
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="router.navigate(['/games'])"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</mat-card>
