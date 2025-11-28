@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 @Component({
   selector: 'app-modify-list-item',
   standalone: true,
@@ -38,7 +40,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatButtonModule
+    MatButtonModule,MatTooltipModule
   ]
 })
 export class ModifyListItem implements OnInit {

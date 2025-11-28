@@ -3,58 +3,85 @@
 
   <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
 
-    <!-- ID -->
-    <mat-form-field appearance="outline" class="form-field" disabled>
+
+    <mat-form-field
+      appearance="outline"
+      class="form-field"
+      matTooltip="This ID cannot be changed"
+      matTooltipPosition="above"
+    >
       <mat-label>ID</mat-label>
       <input
         matInput
         type="number"
         formControlName="id"
         appHighlightOnFocus="yellow"
-      />
+        [disabled]="true"
+      >
     </mat-form-field>
 
     <!-- Title -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field
+      appearance="outline"
+      class="form-field"
+      matTooltip="Enter the full game title (minimum 3 characters)"
+      matTooltipPosition="above"
+    >
       <mat-label>Title</mat-label>
       <input
         matInput
         type="text"
         formControlName="title"
         appHighlightOnFocus="lightblue"
-      />
+      >
     </mat-form-field>
 
     <!-- Genre -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field
+      appearance="outline"
+      class="form-field"
+      matTooltip="Example: Action, Sports, Adventure, Puzzle"
+      matTooltipPosition="above"
+    >
       <mat-label>Genre</mat-label>
       <input
         matInput
         type="text"
         formControlName="genre"
         appHighlightOnFocus="lightgreen"
-      />
+      >
     </mat-form-field>
 
     <!-- In Stock & Multiplayer -->
     <div class="checkbox-row">
-      <mat-checkbox formControlName="inStock">
+      <mat-checkbox
+        formControlName="inStock"
+        matTooltip="Check this if the game is currently available"
+      >
         In Stock
       </mat-checkbox>
 
-      <mat-checkbox formControlName="multiplayer">
+      <mat-checkbox
+        formControlName="multiplayer"
+        matTooltip="Check if this game supports more than one player"
+      >
         Multiplayer
       </mat-checkbox>
     </div>
 
     <!-- Image URL -->
-    <mat-form-field appearance="outline" class="form-field">
+    <mat-form-field
+      appearance="outline"
+      class="form-field"
+      matTooltip="Paste the full image URL to display the game cover"
+      matTooltipPosition="above"
+    >
       <mat-label>Image URL</mat-label>
       <input
         matInput
         type="text"
         formControlName="imgUrl"
-      />
+      >
     </mat-form-field>
 
     <!-- Error message -->
@@ -69,6 +96,7 @@
         color="primary"
         type="submit"
         [disabled]="gameForm.invalid"
+        matTooltip="Click to save changes"
       >
         {{ gameForm.get('id')?.value ? 'Update Game' : 'Add Game' }}
       </button>
@@ -78,9 +106,11 @@
         color="warn"
         type="button"
         (click)="router.navigate(['/games'])"
+        matTooltip="Cancel and return to the games list"
       >
         Cancel
       </button>
     </div>
+
   </form>
 </mat-card>

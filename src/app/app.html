@@ -1,8 +1,39 @@
-<nav>
-  <a routerLink="/games">Home</a>
-  |
-  <a routerLink="/modify-item">Modify List Item</a>
-</nav>
+<mat-toolbar color="primary">
+  <mat-icon>sports_esports</mat-icon>
+  <span class="logo" routerLink="/games">Games</span>
 
+  <span class="spacer"></span>
+
+  <!-- Home / Games -->
+  <button
+    mat-button
+    routerLink="/games"
+    routerLinkActive="active-link"
+
+  >
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+
+  <!-- Add Game -->
+  <button
+    mat-button
+    routerLink="/games/add"
+    routerLinkActive="active-link"
+  >
+    <mat-icon>add</mat-icon>
+    Add Game
+  </button>
+
+  <!-- Modify List Item -->
+  <button
+    mat-button
+    routerLink="/modify-list-item"
+    routerLinkActive="active-link"
+  >
+    <mat-icon>edit</mat-icon>
+    Modify List Item
+  </button>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

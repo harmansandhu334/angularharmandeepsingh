@@ -7,9 +7,17 @@ import { mockContent } from './data/mockcontent';
 import { GameListItem } from './game-list-item/game-list-item';
 import { Game } from './services/game';
 import { RouterOutlet, RouterLink } from '@angular/router';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-root',
-  imports: [    RouterOutlet, RouterLink],
+  imports: [    RouterOutlet, RouterLink,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule],
   templateUrl:'./app.html',
   standalone: true,
   styleUrls: ['./app.css']
